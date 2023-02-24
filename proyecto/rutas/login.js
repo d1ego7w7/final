@@ -29,27 +29,27 @@ route.get('/:usuario',(req, res) => {
         }
     });
 });
-route.post('/1',function(req,res) {
-     const usuario = req.body.usuario;
-    let sql = 'select usuario from login where usuario = ?';
-    conexion.query(sql, [usuario], async function(error, results)  {
-      if (error) {
-        res.json("error");
-      }
-      if (results.length == 0) {
-        res.json('Usuario no encontrado');
-        return;
-      }
-      jwt.sign(usuario, jwt_secret, function (err,token)
-        {
-        if(err){
-            console.log("error");
-        }else{
-            res.json(token);
-        }
-     });
-      });  
-});
+// route.post('/1',function(req,res) {
+//     const usuario = req.body.usuario;
+//     let sql = 'select usuario from login where usuario = ?';
+//     conexion.query(sql, [usuario], async function(error, results)  {
+//       if (error) {
+//         res.json("error");
+//       }
+//       if (results.length == 0) {
+//         res.json('Usuario no encontrado');
+//         return;
+//       }
+//       jwt.sign(usuario, jwt_secret, function (err,token)
+//         {
+//         if(err){
+//             console.log("error");
+//         }else{
+//             res.json(token);
+//         }
+//      });
+//       });  
+// });
 
 route.post('/',async function(req,res) {
     let clave_encryptada  = await encrypt.hash(req.body.contraseña,10)
@@ -60,11 +60,7 @@ route.post('/',async function(req,res) {
         usuResponsable:req.body.usuResponsable
       }
     let sql = 'Insert into login set ?';
-   
-    let tok=req.header('Authorization')
-    jwt.verify(tok, jwt_secret, function (err,datos)
-    {
-    if(datos){
+
         conexion.query(sql,data,function(err,resul){
             if(err){
                 console.log(err.message);
@@ -73,12 +69,10 @@ route.post('/',async function(req,res) {
                 res.json({ mensaje:'Se adiciono un campo' });
             }
         });
-   
-    }else{
-        res.json(err);    
-    }
-    }) 
 });
+
+
+
 //----------------------------------
 route.post('/compara', async (req, res) => {
     const usuario = req.body.usuario;

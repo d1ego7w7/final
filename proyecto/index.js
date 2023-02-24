@@ -15,7 +15,7 @@ const paciente =require('./rutas/paciente')
 const empleado =require('./rutas/empleado')
 const servicio =require('./rutas/servicio')
 const tipopago =require('./rutas/pago')
-
+const acceso = require('./rutas/acceso')
 
 app.use('/login',login);
 app.use('/historial',historial);
@@ -27,6 +27,8 @@ app.use('/paciente',paciente);
 app.use('/empleado',empleado);
 app.use('/servicio',servicio);
 app.use('/pago',tipopago);
+app.use('/acc',acceso);
+
 const puerto = 3000
 app.listen(puerto, function() {
     console.log('Servidor OK en puerto: '+puerto);
