@@ -29,27 +29,6 @@ route.get('/:usuario',(req, res) => {
         }
     });
 });
-// route.post('/1',function(req,res) {
-//     const usuario = req.body.usuario;
-//     let sql = 'select usuario from login where usuario = ?';
-//     conexion.query(sql, [usuario], async function(error, results)  {
-//       if (error) {
-//         res.json("error");
-//       }
-//       if (results.length == 0) {
-//         res.json('Usuario no encontrado');
-//         return;
-//       }
-//       jwt.sign(usuario, jwt_secret, function (err,token)
-//         {
-//         if(err){
-//             console.log("error");
-//         }else{
-//             res.json(token);
-//         }
-//      });
-//       });  
-// });
 
 route.post('/',async function(req,res) {
     let clave_encryptada  = await encrypt.hash(req.body.contraseña,10)
