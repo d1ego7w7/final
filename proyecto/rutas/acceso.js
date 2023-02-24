@@ -12,7 +12,7 @@ route.post('/',function(req,res) {
    let sql = 'select usuario,contraseña from login where usuario = ?';
    conexion.query(sql, [usuario], async function(error, results)  {
      if (error) {
-       res.json("error");
+       res.json("error  inesperado comuniquese con el admin");
      }
      if (results.length == 0) {
        res.json('Usuario no encontrado');
