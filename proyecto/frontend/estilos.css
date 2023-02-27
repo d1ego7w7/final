@@ -1,0 +1,16 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+header{
+    background: url(../imagenes/index.jpg);
+    background-color:rgb(143, 207, 127);
+    height: 500px;
+    display: block;
+    justify-content: center;
+}

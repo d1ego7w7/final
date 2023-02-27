@@ -1,0 +1,205 @@
+/*Pie de pagina*/
+.pie-pagina{
+    width: 100%;
+    background-color:rgb(143, 207, 127);
+    text-align: center;
+
+}
+.pie-pagina .group-1{
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap: 50px;
+    padding: 45px 0px;
+}
+.pie-pagina .group-1 .box figure{
+    width: 75%;
+    height: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pie-pagina .group-1 .box figure img{
+    width: 250px;
+}
+.pie-pagina .group-1 .box h2{
+    color:rgb(13, 65, 17);
+    margin-bottom:25px ;
+    font-size: 20px;
+}
+.pie-pagina .group-1 .box p{
+    color:rgb(13, 65, 17);
+    margin-bottom: 10px;
+}
+.pie-pagina .group-1 .red-social img{
+    display: inline-block;
+    text-decoration: none;
+    width: 100px;
+    height: 100px;
+    color:rgb(13, 65, 17);
+    margin-right: 10px;
+    background-color: antiquewhite;
+    text-align: center;
+    transition: all 300 ms ease;
+}
+.pie-pagina .group-1 .red-social a:hover{
+    color: aqua;
+} 
+.pie-pagina .group-2{
+    background-color: rgb(255, 255, 255);
+    padding: 15px 10px;
+    text-align: center;
+    color: rgb(8, 8, 8);
+}
+.pie-pagina .group-2 small{
+    font-size: 15 px;
+}
+@media screen and (max-width:800px){
+    .pie-pagina .group-1{
+        width: 100%;
+        grid-template-columns: repeat(3 ,1fr);
+        grid-gap: 50px;
+        padding: 45px 0px;
+    }
+}
+.group-1 a { text-decoration: none; 
+    color: black;} 
+
+
+.pie-pagina .group-1 .red-social ul {
+display: flex;
+margin-top: 20%;
+margin-right: 100%;
+transform: translate(-50%, -50%);
+}
+
+.pie-pagina .group-1 .red-social ul li {
+list-style: none;
+}
+
+.pie-pagina .group-1 .red-social ul li a {
+width: 80px;
+height: 80px;
+background-color: #fff;
+text-align: center;
+line-height: 80px;
+font-size: 35px;
+margin: 0 7px;
+display: block;
+border-radius: 50%;
+position: relative;
+overflow: hidden;
+border: 3px solid #fff;
+z-index: 1;
+}
+
+.pie-pagina .group-1 .red-social ul li a .icon {
+position: relative;
+color: #262626;
+transition: .5s;
+z-index: 3;
+}
+
+.pie-pagina .group-1 .red-social ul li a:hover .icon {
+color: #fff;
+transform: rotateY(360deg);
+}
+
+.pie-pagina .group-1 .red-social ul li a:before {
+content: "";
+position: absolute;
+top: 100%;
+left: 0;
+width: 100%;
+height: 100%;
+background: #f00;
+transition: .5s;
+z-index: 2;
+}
+
+.pie-pagina .group-1 .red-social ul li a:hover:before {
+top: 0;
+}
+
+.pie-pagina .group-1 .red-social ul li:nth-child(1) a:before{
+background: #3b5999;
+}
+
+.pie-pagina .group-1 .red-social ul li:nth-child(2) a:before{
+background: #55acee;
+}
+
+.pie-pagina .group-1 .red-social ul li:nth-child(3) a:before {
+background: #63df6d;
+}
+
+.pie-pagina .group-1 .red-social ul li:nth-child(4) a:before {
+background: #c306e9;
+}
+
+.carreaux_presentation_light
+{
+display:table-cell;
+width:500px; height:500px;
+background-size:cover;
+overflow: hidden;
+position: relative;
+}
+
+.carreaux_presentation_light:hover .shadow_swhow_mini
+{
+background-color:rgba(254, 254, 255, 0);
+}
+.carreaux_presentation_light .deroul_titre
+{
+position: absolute;
+text-transform: uppercase;
+font-family: 'Roboto';
+padding: 7px;
+z-index: 1000;
+top:60%;left:-80%;
+color:#ffffff;
+font-weight: 300;
+font-size: 13px; width: 80%;
+-webkit-transition: all 0.7s;
+-moz-transition: all 0.7s;
+-ms-transition: all 0.7s;
+transition: all 0.7s;
+
+}
+.carreaux_presentation_light:hover .deroul_titre
+{
+background-color:#778686; left:0px;
+
+}
+.carreaux_presentation_light .deroul_soustitre
+{
+position: absolute;
+font-family: 'Roboto';
+padding: 5px;
+z-index: 1000;
+top:60%;right:-85%;
+margin-top: 25px;
+color:#c4bebe;
+font-weight: 300;
+font-size: 11px; width: 80%;
+-webkit-transition: all 0.7s;
+-moz-transition: all 0.7s;
+-ms-transition: all 0.7s;
+transition: all 0.7s;
+}
+.carreaux_presentation_light:hover .deroul_soustitre
+{
+background-color:#121313;right:0px;
+}
+
+.contenedorLetra{
+font-family:verdana;
+color:rgb(0, 0, 0);
+text-shadow: 1px  0px 0px black,    
+             0px  1px 0px black,
+            -1px  0px 0px black,
+             0px -1px 0px white;
+}
