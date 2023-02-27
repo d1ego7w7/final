@@ -12,10 +12,10 @@ route.post('/',function(req,res) {
    let sql = 'select usuario,contraseña from login where usuario = ?';
    conexion.query(sql, [usuario], async function(error, results)  {
      if (error) {
-       res.json("error  inesperado comuniquese con el admin");
+       res.json({mensaje:'error  inesperado comuniquese con el admin'});
      }
      if (results.length == 0) {
-       res.json('Usuario no encontrado');
+       res.json({mensaje:'Usuario no encontrado'});
        return;
      }
       const contra= results[0].contraseña;
@@ -33,7 +33,7 @@ route.post('/',function(req,res) {
            });
               //----
           } else {
-            res.json('Datos incorrecto');
+            res.json({mensaje:'Datos incorrectos'});
           }
         })
     })
