@@ -16,6 +16,8 @@ const empleado =require('./rutas/empleado')
 const servicio =require('./rutas/servicio')
 const tipopago =require('./rutas/pago')
 const acceso = require('./rutas/acceso')
+const reporte = require('./rutas/reporte')
+const add = require('./rutas/addFac')
 
 app.use('/login',login);
 app.use('/historial',historial);
@@ -28,6 +30,8 @@ app.use('/empleado',empleado);
 app.use('/servicio',servicio);
 app.use('/pago',tipopago);
 app.use('/acc',acceso);
+app.use('/repor',reporte);
+app.use('/add',add);
 
 const puerto = 3000
 app.listen(puerto, function() {
