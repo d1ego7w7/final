@@ -51,7 +51,13 @@ create table paciente (
  );
  insert into paciente (nombreMascota,especie,raza,color,tamaño,peso,sexo) values
  ('Baffy','perro','Schanauzer','negro','pequeño',3.5,1),
- ('Mica','gato','Angora','naranja','mediano',1.2,0);
+ ('Pelusa','gato','Angora','plomo','grande',1.2,0),
+ ('Sajta','gato','Albino','blanco','pequeño',0.9,0),
+ ('Thorin','perro','Pug','crema','pequeño',3.6,1),
+ ('Jessy','gato','Albino','blanco','grande',1.2,0),
+ ('Bosnia','gato','Angora','naranja','mediano',1.4,1),
+ ('Emma','perro','Chow-Chow','cafe','grande',5.5,0),
+ ('Mica','gato','Angora','naranja','mediano',1.0,0);
 create table servicio (
   codServicio smallint primary key not null,
   tipoServicio varchar(30) not null,
@@ -59,7 +65,12 @@ create table servicio (
   descripcion varchar(100)
   );
   insert into servicio values
-  (1,'consulta general',50,'El animal recibe un diagnostico en que estado se encuentra');
+  (1,'consulta general',50,'El animal recibe un diagnostico en que estado se encuentra'),
+  (2,'vacunacion primeriza',85,'La vacunacion se dara para animales primerizos'),
+  (3,'esterilizacion canina',120,'La esterilizacion es con tecnica spacy para canes'),
+  (4,'esterilizacion felinos',95,'La esterilizacion es con tecnica spacy para felinos'),
+  (5,'ecografias',280,'La ecografia ayuda a los animales a detectar todo males'),
+  (6,'peluqueria',75,'La peluqueria contiene: Baños, corte de uñas, corte de pelos y perfumado');
 create table cita(
 codCita int auto_increment primary key,
 codPaciente int not null,
@@ -91,6 +102,7 @@ descripcion varchar (100) not null
 );
 insert into tipoPago (nombre,descripcion) values
 ('efectivo','Este pago se realiza con dinero fisico'),
+('QR','Este pago se realiza mediante QR'),
 ('tarjeta','Este pago se realiza mediante una tarjeta de debito');
 create table factura(
 codFactura int auto_increment primary key not null ,
@@ -102,7 +114,11 @@ codPago int not null,
 foreign key (codPago) references tipoPago(codPago)
 );
 insert into factura (tipoDocumento,numDocumento,nombre,codPago) values
-('NIT','3340943017','Hurtado',1);
+('NIT','3340943017','Hurtado',1),
+('NIT','3254175019','Mendoza',2),
+('CI','5654898','Aligar',3),
+('NIT','6754125917','Estrada',1),
+('Vacio','0000','vacio',3);
 
 create table detalleFactura(
 codDetalleFactura int auto_increment primary key,
@@ -118,8 +134,21 @@ foreign key (codServicio) references servicio(codServicio),
 foreign key (codFactura) references factura(codFactura)
 );
 insert into detalleFactura (codFactura,codServicio,codEmpleado,codPaciente,costoUnitario,descripcion) values
-(1,1,2,2,50,'pago de consulta general');
-
+(1,2,1,1,85,'pago de vacunacion'),
+(1,1,2,1,50,'pago de consulta general'),
+(1,5,1,1,280,'pago de ecografia'),
+(2,1,2,4,50,'pago de consulta general'),
+(2,3,2,4,120,'pago de esterilizacion canina'),
+(3,1,2,2,50,'pago de consulta general'),
+(3,4,2,2,95,'pago de esterilizacion felina'),
+(3,2,1,7,120,'pago de esterilizacion canina'),
+(4,1,2,8,50,'pago de consulta general'),
+(4,4,2,8,95,'pago de esterilizacion felina');
+select detalleFactura.codServicio,servicio.tipoServicio,servicio.precio,count(detalleFactura.codServicio) as Solicitados
+from servicio, factura, detalleFactura
+where servicio.codServicio=detalleFactura.codServicio and detalleFactura.codFactura=factura.codFactura 
+group by detalleFactura.codServicio
+order by count(detalleFactura.codServicio) desc;
 select * from usuario;
 select * from empleado;
 select * from paciente;
