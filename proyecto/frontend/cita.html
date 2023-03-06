@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Servicios</title>
+    <title>Historial</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="./estilos.css">
     <link rel="stylesheet" href="./es_abajo.css">
@@ -65,7 +66,7 @@ background-color: #6c567b;
 
           </div>
           <div class="col">
-            Servicio
+            Cita
           </div>
           <div class="col">
 
@@ -75,12 +76,12 @@ background-color: #6c567b;
 
       <section style="color: black; margin: 2%;">
         <table  width="100%" >
-        
-            <thead class="caja"> <tr ><td>Codigo</td>
-                                <td >tipoServicio</td>
-                                <td >precio</td>
+            <thead class="caja"> <tr ><td>Codigo Cita</td>
+                                <td >Codigo Paciente</td>
+                                <td >Fecha</td>
                                 <td >descripcion</td>
-                               
+                                <td>Fecha Proxima</td>
+                                <td>Hora</td> 
                             <td></td>
                             <td></td></tr>         
             </thead>
@@ -91,23 +92,27 @@ background-color: #6c567b;
         </table>
         <br>
         <div align="center">
-            
-        <form id='form_servicio' >
-            <table >
-                <tr><td>
-                    Nombre de servicio</td>
-                    <td><input type="text" id="tipoServicio" name="tipoServicio"></tr></td>
-                    <tr><td>Precio</td>
-                    <td><input type="text" id="precio" name="precio"></td></tr>
-                    <tr>
-                    <td>descripcion</td>
+        <form id='form_cita' >
+            <table>
+                <tr ><td>
+                    Codigo Paciente</td>
+                    <td><input type="text" id="codPaciente" name="codPaciente"></tr></td>
+                    <tr ><td>descripcion</td>
                     <td><input type="text" id="descripcion" name="descripcion"></td></tr>
-                    
+                    <tr >
+                    <td>fecha Proxima</td>
+                    <td><input type="date" id="fechaProxima" name="fechaProxima"></td></tr>
+                    <tr>
+                    <td>Hora</td>
+                     <td><input type="text" id="hora" name="hora"></td></tr>
+        
     </table>
+    
     <button  type="submit">Guardar</button>
         </form>
+    
     </div>
-        <script src="./servicio.html">
+        <script src="./cita.js">
         </script>
       </section>
 

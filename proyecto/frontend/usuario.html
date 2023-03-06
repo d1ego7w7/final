@@ -10,7 +10,17 @@
     <link rel="stylesheet" href="./es_abajo.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"> 
     <link rel="shortcut icon" href="../imagenes/logo (1).png">
-
+    <style>
+   
+        table{
+              border-collapse: collapse;
+              }
+             .caja{   
+     color:white;
+     background-color: #6c567b;
+             }
+         
+             </style>
 </head>
 <body>
       <section>
@@ -31,7 +41,7 @@
                   <a class="nav-link" href="../frontend/usuario.html">Usuario</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="../frontend/doctor.html">Doctor</a>
+                  <a class="nav-link" href="../frontend/cita.html">Citas</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="../frontend/servicio.html">Servicio</a>
@@ -64,6 +74,115 @@
         </div>
       </div>
 
+      <section style="color: black; padding: 2%;">
+        <table  width="100%" >
+            <thead class="caja"> <tr ><td>Codigo Usuario</td>
+                                <td >Nombres</td>
+                                <td >Paterno</td>
+                                <td >Materno</td>
+                                <td>CI</td>
+                                <td>Direccion</td> 
+                                <td >Genero</td>
+                                <td >Celular</td>
+                                <td>Fecha Nacimiento</td>
+                                <td>Email</td> 
+                            <td></td>
+                            <td></td></tr>         
+            </thead>
+            <tbody id="data">
+    
+            </tbody >
+           
+        </table>
+        <br>
+        <div align="center">
+        <form id='form_usuario' >
+            <table>
+                <tr ><td>
+                    Nombres</td>
+                    <td><input type="text" id="nombres" name="nombres"></tr></td>
+                    <tr ><td>Paterno</td>
+                    <td><input type="text" id="paterno" name="paterno"></td></tr>
+                    <tr >
+                    <td>Materno</td>
+                    <td><input type="text" id="materno" name="materno"></td></tr>
+                    <tr>
+                    <td>CI</td>
+                     <td><input type="text" id="ci" name="ci"></td></tr>
+                     <tr>
+                    <td>Direccion</td>
+                    <td><input type="text" id="direccion" name="direccion"></td></tr>
+                    <tr>
+                     <td>Genero</td>
+                    <td><input type="text" id="genero" name="genero"></td> </tr>
+                     <tr>
+                     <td>Celular</td>
+                     <td><input type="text" id="celular" name="celular"></td></tr>
+                     <tr>
+                    <td>Fecha Nacimiento</td>
+                    <td><input type="date" id="fechaNacimiento" name="fechaNacimiento"></td></tr>
+                    <tr>
+                    <td>Emial</td>
+                     <td><input type="email" id="email" name="email"></td></tr>
+        
+    </table>
+    
+    <button  type="submit">Guardar</button>
+        </form>
+    
+    </div>
+        <script src="./usuario.js">
+        </script>
+      </section>
+      <br>
+      <section>
+        <div class="container text-center" style="color: rgb(15, 66, 2); font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size: x-large;">
+            <div class="row align-items-center">
+              <div class="col">
+    
+              </div>
+              <div class="col">
+                Empleado
+              </div>
+              <div class="col">
+    
+              </div>
+            </div>
+          </div>
+
+      </section>
+      <br>
+      <section style="color: black; padding: 2%;">
+        <table  width="100%" >
+            <thead class="caja"> <tr >
+                <td>Codigo Empleado</td>               
+                <td >Tipo de Empleado</td>
+                <td >Codigo Usuario</td>
+                            <td></td>
+                            <td></td></tr>         
+            </thead>
+            <tbody id="data">
+    
+            </tbody >
+           
+        </table>
+        <br>
+        <div align="center">
+        <form id='form_empleado' >
+            <table>
+                    <tr ><td>Tipo de Doctor</td>
+                    <td><input type="text" id="tipoEmpleado" name="tipoEmpleado"></tr></td>
+                    <tr ><td>Codigo Usuario</td>
+                    <td><input type="number" id="codUsuario" name="codUsuario"></td></tr>
+    </table>
+    
+    <button  type="submit">Guardar</button>
+        </form>
+    
+    </div>
+        <script src="./empleado.js">
+        </script>
+      </section>
 
     <footer class ="pie-pagina">
         <div class="group-1">

@@ -4,26 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio</title>
+    <title>Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="./estilos.css">
     <link rel="stylesheet" href="./es_abajo.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"> 
     <link rel="shortcut icon" href="../imagenes/logo (1).png">
-
-
 </head>
-<body style="background-color:rgb(143, 207, 127);">
-    <div class="container text-center" style=" font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; color: rgb(5, 78, 29);">
+<body style="background-color:rgb(69, 122, 69)">
+    <div class="container text-center" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: bisque;">
         <div class="row">
-            <div class="col">
-          
-            </div>
+          <div class="col">
+            
+          </div>
           <div class="col-6">
-           <img src="../imagenes/logo (1).png" height="100px" width="100px">
+           <img src="../imagenes/logo (1).png" height="100px">
           </div>
           <div class="col">
-          
+            
           </div>
         </div>
         <div class="row">
@@ -31,72 +29,61 @@
           
           </div>
           <div class="col-5">
-            <form>
-                <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Usuario</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                  <div id="emailHelp" class="form-text">Recuerda ingresar con tu registro de Lamiditas</div>
+            <form name="FrmData" action="index.html">
+              <div class="mb-3">
+                <label class="form-label">Usuario</label>
+                <input type="text" class="form-control" id="usuario" name="usuario">
+                <div id="emailHelp" class="form-text" style="color:black">Recuerda ingresar con tu usuario </div>
+              </div>
+              <div class="mb-3">
+                <label for="inputPassword5" class="form-label">Contraseña</label>
+                <input type="password" id="clave" name="clave" class="form-control" aria-describedby="passwordHelpBlock">
+                <div id="passwordHelpBlock" class="form-text" style="color:black">
+                  Ingresa la contrasela correcta
                 </div>
-                <div class="mb-3">
-                    <label for="inputPassword5" class="form-label">Contraseña</label>
-                    <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock">
-                    <div id="passwordHelpBlock" class="form-text">
-                    Tu contraseña no debe tener 5-8 caracteres y no emojis
-                    </div>
-                </div>
-                <div class="mb-3 form-check">
-                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                  <label class="form-check-label" for="exampleCheck1">Presione para verificar la cuenta</label>
-                </div>
-                <button type="button" class="btn btn-light"><a href="../frontend/index.html" style="text-decoration: none; color: black;">Ingresar</a></button>
-              </form> 
-          </div>
-          <div class="col">
-         
-          </div>
-        </div>
-      </div>
-
-      <div class="container text-center">
-        <div class="row">
-          <div class="col">
-         
-          </div>
-          <div class="col">
-          </div>
-          <div class="col">
+              </div>
+              <button type="submit" class="btn btn-light">Ingresar</button>
+            </form>
             
           </div>
+          <div class="col">
+         
+          </div>
         </div>
       </div>
-      
-      <footer class ="pie-pagina">
-        <div class="group-1">
-          <div class="box">
 
-          </div>
-          <div class="box">
-              <h2>Nuestras redes sociales</h2>
-              <div class="red-social">
-                <ul>
-                  <li>
-                    <a href="" target="_blank"><i class="fab fa-facebook-f icon"></i>    </a>
-                  </li>
-                  <li>
-                    <a href=""  target="_blank"><i class="fab fa-twitter icon"></i></a>
-                  </li>
-                  <li>
-                    <a href="https://api.whatsapp.com/send?phone=59170588821&data=AWAmN2CdhA_cRZuOiQQ9fu_79RF1Yn9aRD0P1Lk2ck0NiCOY7ifvjJp2LTDLVtLxsWErQHocTgBLaWSJUb1YSHkUYeI5_xaXSKdne9dJvexOVsRnqvIh3MVCZdHeltEZ_CVMM3LHg0zEpNCAUqNnSAfF5O-RKkv3ANlkfBOsfVErLA6RO8t49xy3aZIbkG0DRUlVoQZG_9E_kOQFrtNdDa_BiqpJXkHTpAugmDXcvBcLL071VHE9ubbKCQty8p0ypkwqux0DtBhW1wwoSXOT1w&source=FB_Page&app=facebook&entry_point=page_cta&fbclid=IwAR3HTt3Duibx2Wq6yqsCbuY3Lfuuk_GPQr263T5Efjl41uarEgOr1eUtKuc" target="_blank"><i class="fab fa-whatsapp icon"></i></a></li>
-                  <li>
-                    <a href="" target="_blank"><i class="fab fa-instagram icon"></i></a></li>
-                </ul>
-              </div>
-          </div>
-          <div class="box">
+    
 
+
+<!-- Pie de pagina -->
+<br>
+<footer class ="pie-pagina">
+    <div class="group-1">
+      <div class="box">
+      </div>
+      <div class="box">
+          <h2>Siguenos</h2>
+          <div class="red-social">
+            <ul>
+              <li>
+                <a href="" target="_blank"><i class="fab fa-facebook-f icon"></i>    </a>
+              </li>
+              <li>
+                <a href=""  target="_blank"><i class="fab fa-twitter icon"></i></a>
+              </li>
+              <li>
+                <a href="" target="_blank"><i class="fab fa-whatsapp icon"></i></a></li>
+              <li>
+                <a href="" target="_blank"><i class="fab fa-instagram icon"></i></a></li>
+            </ul>
           </div>
-        </div>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+      </div>
+      <div class="box">
+      </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
 </html>

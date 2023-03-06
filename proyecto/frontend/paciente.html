@@ -10,7 +10,17 @@
     <link rel="stylesheet" href="./es_abajo.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"> 
     <link rel="shortcut icon" href="../imagenes/logo (1).png">
-
+    <style>
+   
+      table{
+            border-collapse: collapse;
+            }
+           .caja{   
+   color:white;
+   background-color: #6c567b;
+           }
+       
+           </style>
 </head>
 <body>
       <section>
@@ -63,7 +73,55 @@
           </div>
         </div>
       </div>
-
+      <section style="color: black; padding: 2%;">
+        <table  width="100%" >
+        
+          <thead class="caja"> <tr >
+                              <td >Codigo Paciente</td>
+                              <td >Nombre</td>
+                              <td >Especie</td>
+                              <td >Raza</td>
+                              <td >Color</td>
+                              <td >Tamaño</td>
+                              <td >Peso</td>
+                              <td >Sexo</td>
+                             
+                          <td></td>
+                          <td></td></tr>         
+          </thead>
+          <tbody id="data">
+  
+          </tbody >
+         
+      </table>
+      <br>
+      <div align="center">
+          
+      <form id='form_empleado' >
+          <table >
+              <tr><td>
+                  Nombre de Mascota</td>
+                  <td><input type="text" id="nombreMascota" name="nombreMascota"></tr></td>
+                  <tr><td>Especie</td>
+                  <td><input type="text" id="especie" name="especie"></td></tr>
+                  <tr><td>Raza</td>
+                  <td><input type="text" id="raza" name="raza"></td></tr>
+                  <tr><td>Color</td>
+                  <td><input type="text" id="color" name="color"></td></tr>
+                  <tr><td>Tamaño</td>
+                  <td><input type="text" id="tamaño" name="tamaño"></td></tr>
+                  <tr><td>Peso</td>
+                  <td><input type="number" id="peso" name="peso"></td></tr>
+                  <tr><td>Sexo</td>
+                  <td><input type="text" id="sexo" name="sexo"></td></tr>
+                  
+  </table>
+  <button  type="submit">Guardar</button>
+      </form>
+  </div>
+      <script src="./paciente.js">
+      </script>
+      </section>
 
     <footer class ="pie-pagina">
         <div class="group-1">
