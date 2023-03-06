@@ -1,17 +1,17 @@
 const url='http://localhost:3000/paciente';
 const contenedor=document.getElementById('data');
 let resultado='';
-const carga_paciente = (paci)=>{
-    paci.forEach(paci => {
+const carga_paciente = (paciente)=>{
+    paciente.forEach(paciente => {
         resultado+=`<tr style="border-bottom: 1px solid  #6c567b">
-                          <td>${paci.codPaciente}</td>
-                          <td>${paci.nombreMascota}</td>
-                          <td>${paci.especie}</td>
-                          <td>${paci.raza}</td>
-                          <td>${paci.color}</td>
-                          <td>${paci.tamaño}</td>
-                          <td>${paci.peso}</td>
-                          <td>${paci.sexo}</td>
+                          <td>${paciente.codPaciente}</td>
+                          <td>${paciente.nombreMascota}</td>
+                          <td>${paciente.especie}</td>
+                          <td>${paciente.raza}</td>
+                          <td>${paciente.color}</td>
+                          <td>${paciente.tamaño}</td>
+                          <td>${paciente.peso}</td>
+                          <td>${paciente.sexo}</td>
                           <td style="cursor:pointer" bgcolor="#f67280" ><a  class='btnDelete' >Eliminar</a></td>
                           <td style="cursor:pointer" bgcolor="#ffbfb0" ><a class='btnEditar' >Editar</a></td>
                           </tr>`
