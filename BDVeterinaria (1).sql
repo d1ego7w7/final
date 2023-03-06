@@ -22,12 +22,13 @@ insert into usuario(nombres, paterno, materno, ci, direccion, genero, celular, f
 create table empleado(
 codEmpleado smallint primary key not null,
 tipoEmpleado varchar (20) not null ,
+sueldo float not null,
 codUsuario int not null default(0),
 foreign key (codUsuario) references usuario(codUsuario)
 );
 insert into empleado values
-(1,'enfermero',1),
-(2,'doctor',2);
+(1,'enfermero',2300,1),
+(2,'doctor',4000,2);
 create table login (
 usuario varchar(20) not null primary key,
 contraseña varchar(70) not null,
