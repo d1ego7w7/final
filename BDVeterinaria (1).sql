@@ -10,18 +10,18 @@ paterno varchar (15) NOT NULL default(''),
 materno varchar (15) NOT NULL default(''),
 ci int not null default(0),
 direccion varchar(50) NOT NULL default(''),
-genero set ('masculino','femenino') not null,
+genero char (1) not null,
 celular int not null default(0),
 fechaNacimiento date default(0),
 email varchar(100) NULL default('')
 );
 
 insert into usuario(nombres, paterno, materno, ci, direccion, genero, celular, fechaNacimiento,email) values
-('Diego','Hurtado','Silva',6836899,'Bajo Llojeta','masculino',70588821,'2001-10-01','diego@gmail.com'),
-('Alex','Copa','Catari',6810202,'Villa Fatima','masculino',73574893,'2001-06-18','alex@gmail.com');
+('Diego','Hurtado','Silva',6836899,'Bajo Llojeta','M',70588821,'2001-10-01','diego@gmail.com'),
+('Alex','Copa','Catari',6810202,'Villa Fatima','M',73574893,'2001-06-18','alex@gmail.com');
 create table empleado(
 codEmpleado smallint primary key not null,
-tipoEmpleado set ('doctor','enfermero') not null ,
+tipoEmpleado varchar (20) not null ,
 codUsuario int not null default(0),
 foreign key (codUsuario) references usuario(codUsuario)
 );
@@ -47,17 +47,17 @@ create table paciente (
   color varchar(15) not null,
   tamaño set ('pequeño','mediano','grande') not null,
   peso float not null default(0),
-  sexo  bit NOT NULL
+  sexo  char(1) NOT NULL
  );
  insert into paciente (nombreMascota,especie,raza,color,tamaño,peso,sexo) values
- ('Baffy','perro','Schanauzer','negro','pequeño',3.5,1),
- ('Pelusa','gato','Angora','plomo','grande',1.2,0),
- ('Sajta','gato','Albino','blanco','pequeño',0.9,0),
- ('Thorin','perro','Pug','crema','pequeño',3.6,1),
- ('Jessy','gato','Albino','blanco','grande',1.2,0),
- ('Bosnia','gato','Angora','naranja','mediano',1.4,1),
- ('Emma','perro','Chow-Chow','cafe','grande',5.5,0),
- ('Mica','gato','Angora','naranja','mediano',1.0,0);
+ ('Baffy','perro','Schanauzer','negro','pequeño',3.5,'M'),
+ ('Pelusa','gato','Angora','plomo','grande',1.2,'H'),
+ ('Sajta','gato','Albino','blanco','pequeño',0.9,'H'),
+ ('Thorin','perro','Pug','crema','pequeño',3.6,'M'),
+ ('Jessy','gato','Albino','blanco','grande',1.2,'H'),
+ ('Bosnia','gato','Angora','naranja','mediano',1.4,'M'),
+ ('Emma','perro','Chow-Chow','cafe','grande',5.5,'H'),
+ ('Mica','gato','Angora','naranja','mediano',1.0,'H');
 create table servicio (
   codServicio smallint primary key not null,
   tipoServicio varchar(30) not null,
