@@ -1,9 +1,10 @@
+const token = localStorage.getItem('token');
 const url='http://localhost:3000/paciente';
 const contenedor=document.getElementById('data');
 let resultado='';
 const carga_paciente = (paciente)=>{
     paciente.forEach(paciente => {
-        resultado+=`<tr style="border-bottom: 1px solid  #6c567b">
+        resultado+=`<tr style="border-bottom: 2px solid  #000000">
                           <td>${paciente.codPaciente}</td>
                           <td>${paciente.nombreMascota}</td>
                           <td>${paciente.especie}</td>
@@ -18,6 +19,15 @@ const carga_paciente = (paciente)=>{
     });
     contenedor.innerHTML=resultado;
 }  
+fetch(url, {
+    method: 'GET',
+    headers: { 'Authorization': token
+   }
+  })
+  .then(response => response.json())
+   .then(data => carga_paciente(data))
+  .catch(error => console.log(error))
+
 const on=(element,event,selector,handler)=>{
     element.addEventListener(event, e =>{
     if(e.target.closest(selector)){
@@ -29,7 +39,8 @@ const on=(element,event,selector,handler)=>{
 on (document,'click','.btnDelete', e=>{
      fila=e.target.parentNode.parentNode 
     const codigo=fila.firstElementChild.innerHTML
-    fetch(url +'/'+codigo,{method:'DELETE'})
+    fetch(url +'/'+codigo,{method:'DELETE', headers: { 'Authorization': token
+}})
     .then(response=>response.json())
     .then(()=>location.reload())
 })
@@ -39,7 +50,7 @@ form_paciente.addEventListener('submit',(e)=>{
     e.preventDefault()
     if(operacion=='adicionar'){
         fetch(url,{ method:'POST',
-        headers:{'Content-type':'application/json'},
+        headers:{'Content-type':'application/json','Authorization': token},
         body:JSON.stringify({
             nombreMascota:nombreMascota.value,
             especie:especie.value,
@@ -61,7 +72,7 @@ form_paciente.addEventListener('submit',(e)=>{
 }
     if(operacion=='modificar'){
         fetch(url+'/'+codPaciente,{method:'PUT',
-        headers:{'Content-type':'application/json'},
+        headers:{'Content-type':'application/json','Authorization': token},
         body:JSON.stringify({
             nombreMascota:nombreMascota.value,
             especie:especie.value,
@@ -103,7 +114,4 @@ on(document,'click','.btnEditar',e=>{
     operacion='modificar'
     chil
 })
-fetch(url)
-.then(response => response.json())
- .then(data => carga_paciente(data))
-.catch(error => console.log(error))
+

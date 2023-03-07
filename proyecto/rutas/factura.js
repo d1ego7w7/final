@@ -36,10 +36,7 @@ route.post('/',function(req,res) {
         codPago:req.body.codPago
     }
     let sql = 'Insert into factura set ?';
-    let tok=req.header('Authorization')
-    jwt.verify(tok, jwt_secret, function (err,datos)
-    {
-    if(datos){
+
         conexion.query(sql,data, function(err,resul){
             if(err){
                 console.log(err.message);
@@ -49,10 +46,6 @@ route.post('/',function(req,res) {
                 res.json({ mensaje:'Se adiciono un campo' });
             }
         });
-    }else{
-        res.json(err);    
-    }
-    }) 
 });
 route.put('/:codFactura',function(req,res) {
     let codFactura = req.params.codFactura;
@@ -61,10 +54,6 @@ route.put('/:codFactura',function(req,res) {
     let nombre=req.body.nombre;
     let codPago=req.body.codPago
     let sql = 'Update factura set tipoDocumento = ?, numDocumento=?, nombre=?, codPago=? where codFactura = ?';
-    let tok=req.header('Authorization')
-    jwt.verify(tok, jwt_secret, function (err,datos)
-    {
-    if(datos){
         conexion.query(sql,[tipoDocumento,numDocumento,nombre,codPago,codFactura],function(err,resul){
             if(err){
                 console.log(err.message);
@@ -73,19 +62,10 @@ route.put('/:codFactura',function(req,res) {
                 res.json({ mensaje:'Se actualizo un campo' });
             }
         });
-    }else{
-        res.json(err);    
-    }
-    }) 
-  
  });
  route.delete('/:codFactura',function(req,res) {
     let codFactura = req.params.codFactura;
     let sql = 'Delete from factura where codFactura = ?';
-    let tok=req.header('Authorization')
-    jwt.verify(tok, jwt_secret, function (err,datos)
-    {
-    if(datos){
         conexion.query(sql,[codFactura],function(err,resul){
             if(err){
                 console.log(err.message);
@@ -94,10 +74,6 @@ route.put('/:codFactura',function(req,res) {
                 res.json({ mensaje:'Se elimino un campo' });
             }
         });
-    }else{
-        res.json(err);    
-    }
-    }) 
  });
 
 

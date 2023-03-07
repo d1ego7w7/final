@@ -41,10 +41,6 @@ route.post('/',function(req,res) {
     }
     
     let sql = 'Insert into paciente set ?';
-    let tok=req.header('Authorization')
-    jwt.verify(tok, jwt_secret, function (err,datos)
-    {
-    if(datos){
         conexion.query(sql,data, function(err,resul){
             if(err){
                 console.log(err.message);
@@ -53,13 +49,8 @@ route.post('/',function(req,res) {
                 res.json({ mensaje:'Se agrego un campo' });
             }
         });
-      
-    }else{
-        res.json(err);    
-    }
-    }) 
 });
-route.put('/:codPaciente  ',function(req,res) {
+route.put('/:codPaciente',function(req,res) {
     let codigo  = req.params.codPaciente  ;    
     let nombreMascota  =req.body.nombreMascota  ;
     let especie  =req.body.especie  ;
@@ -71,9 +62,6 @@ route.put('/:codPaciente  ',function(req,res) {
 
     let sql = 'Update paciente set nombreMascota = ?, especie =?, raza =?, color =?, tamaño =?, peso =?, sexo =? where codPaciente = ?';
     let tok=req.header('Authorization')
-    jwt.verify(tok, jwt_secret, function (err,datos)
-    {
-    if(datos){
         conexion.query(sql,[nombreMascota ,especie ,raza ,color ,tamaño,peso ,sexo,codigo],function(err,resul){
             if(err){
                 console.log(err.message);
@@ -82,19 +70,10 @@ route.put('/:codPaciente  ',function(req,res) {
                 res.json({ mensaje:'Se actualizo un campo' });
             }
         }); 
-      
-    }else{
-        res.json(err);    
-    }
-    }) 
  });
- route.delete('/:codPaciente  ',function(req,res) {
+ route.delete('/:codPaciente',function(req,res) {
     let codigo = req.params.codPaciente  ;
     let sql = 'Delete from paciente where codPaciente   = ?';
-    let tok=req.header('Authorization')
-    jwt.verify(tok, jwt_secret, function (err,datos)
-    {
-    if(datos){
         conexion.query(sql,[codigo],function(err,resul){
             if(err){
                 console.log(err.message);
@@ -104,10 +83,6 @@ route.put('/:codPaciente  ',function(req,res) {
             }
         });
        
-    }else{
-        res.json(err);    
-    }
-    }) 
 });
 
 

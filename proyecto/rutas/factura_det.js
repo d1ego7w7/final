@@ -38,11 +38,6 @@ route.post('/',function(req,res) {
                 descripcion:req.body.descripcion
             }
     let sql = 'Insert into detallefactura set ?';
-  
-    let tok=req.header('Authorization')
-    jwt.verify(tok, jwt_secret, function (err,datos)
-    {
-    if(datos){
         conexion.query(sql,data, function(err,resul){
             if(err){
                 console.log(err.message);
@@ -51,10 +46,6 @@ route.post('/',function(req,res) {
                 res.json({ mensaje:'Se adiciono un campo' });
             }
         });  
-    }else{
-        res.json(err);    
-    }
-    }) 
 });
 route.put('/:codDetalleFactura',function(req,res) {
     let codigo = req.params.codDetalleFactura;
@@ -65,10 +56,6 @@ route.put('/:codDetalleFactura',function(req,res) {
     let   costoUnitario=req.body.costoUnitario;
     let   descripcion=req.body.descripcion;
     let sql = 'Update detalleFactura set codFactura = ?, codServicio=?, codEmpleado=?, codPaciente=?, costoUnitario=?, descripcion=? where codDetalleFactura = ?';
-    let tok=req.header('Authorization')
-    jwt.verify(tok, jwt_secret, function (err,datos)
-    {
-    if(datos){
         conexion.query(sql,[codFactura,codServicio,codEmpleado,codPaciente,costoUnitario,descripcion,codigo],function(err,resul){
             if(err){
                 console.log(err.message);
@@ -77,19 +64,11 @@ route.put('/:codDetalleFactura',function(req,res) {
                 res.json({ mensaje:'Se actualizo un campo' });
             }
         });
-    }else{
-        res.json(err);    
-    }
-    }) 
     
  });
  route.delete('/:codDetalleFactura',function(req,res) {
     let codigo = req.params.codDetalleFactura;
     let sql = 'Delete from detalleFactura where codDetalleFactura = ?';
-    let tok=req.header('Authorization')
-    jwt.verify(tok, jwt_secret, function (err,datos)
-    {
-    if(datos){
         conexion.query(sql,[codigo],function(err,resul){
             if(err){
                 console.log(err.message);
@@ -98,10 +77,6 @@ route.put('/:codDetalleFactura',function(req,res) {
                 res.json({ mensaje:'Se elimino un campo' });
             }
         });
-    }else{
-        res.json(err);    
-    }
-    }) 
  });
 
  module.exports=route

@@ -66,7 +66,7 @@ route.post('/', async function (req, res) {
 // });
 
 route.get('/',(req, res) => {
-    let sql = "Select id_venta,concat_WS('-',convert(year(fechaoper),char(4)),right(concat('0',convert(month(fechaoper),char(2))),2),right(concat('0',convert(day(fechaoper),char(2))),2)) fechaoper,id_persona,usuario,fech_reg from tventa;"
+    let sql = "select factura.codFactura, detallefactura.codDetalleFactura,detallefactura.codPaciente,factura.numDocumento,factura.nombre, servicio.codServicio, servicio.tipoServicio, detalleFactura.costoUnitario,date_format(factura.fecha,'%Y-%m-%d %H:%i:%s')AS fecha from servicio, factura, detalleFactura where factura.codFactura=detalleFactura.codFactura and servicio.codServicio=detalleFactura.codServicio order by(factura.codFactura) desc"
     conexion.query(sql, (err, resul) => {
         if(err) {
             console.log("Error: "+err.message);
@@ -77,47 +77,6 @@ route.get('/',(req, res) => {
         }
     });
 });
-
-route.get('/:codigo',function(req,res) {
-    let sql = 'Select id_venta,fechaoper,id_persona,usuario,fech_reg from tventa where id_venta=?'
-    conexion.query(sql,[req.params.codigo],function(err,resul){
-        if(err){
-            throw response.json(err.message)
-        }else{
-            res.json(resul);
-        }
-    });
-});
-
-
-// http://localhost:3000/ventas/1
-route.put('/:codigo',function(req,res) {
-    let codigo = req.params.codigo;
-    let fecha = req.body.fechaoper;
-    let persona = req.body.id_persona;
-    let usuario = req.body.usuario;
-    let sql = 'Update tventa set fechaoper = ?, id_persona=?, usuario=? where id_venta = ?';
-    conexion.query(sql,[fecha,persona,usuario,codigo],function(err,resul){
-        if(err){
-            console.log(err.message);
-            // throw response.json(error.message);
-        }else{
-            res.json(resul);
-        }
-    });
- });
- route.delete('/:codigo',function(req,res) {
-    let codigo = req.params.codigo;
-    let sql = 'Delete from tventa where id_venta = ?';
-    conexion.query(sql,[codigo],function(err,resul){
-        if(err){
-            console.log(err.message);
-            // throw response.json(error.message);
-        }else{
-            res.json(resul);
-        }
-    });
- });
 
 
 module.exports=route

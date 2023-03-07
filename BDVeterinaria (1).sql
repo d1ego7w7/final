@@ -4,48 +4,46 @@ create database if not exists BDVeterinaria;
 use BDVeterinaria;
  
 create table usuario(
-codUsuario int auto_increment primary key not null,
+ci int primary key  not null default(0),
 nombres varchar (20) NOT NULL default(''),
 paterno varchar (15) NOT NULL default(''),
 materno varchar (15) NOT NULL default(''),
-ci int not null default(0),
 direccion varchar(50) NOT NULL default(''),
 genero char (1) not null,
 celular int not null default(0),
 fechaNacimiento date default(0),
 email varchar(100) NULL default('')
 );
-
-insert into usuario(nombres, paterno, materno, ci, direccion, genero, celular, fechaNacimiento,email) values
-('Diego','Hurtado','Silva',6836899,'Bajo Llojeta','M',70588821,'2001-10-01','diego@gmail.com'),
-('Alex','Copa','Catari',6810202,'Villa Fatima','M',73574893,'2001-06-18','alex@gmail.com');
+insert into usuario(ci,nombres, paterno, materno, direccion, genero, celular, fechaNacimiento,email) values
+(6836877,'Diego','Hurtado','Silva','Bajo Llojeta','M',70588821,'2001-10-01','diego@gmail.com'),
+(6810202,'Alex','Copa','Catari','Villa Fatima','M',73574893,'2001-06-18','alex@gmail.com');
 create table empleado(
-codEmpleado smallint primary key not null,
+codEmpleado smallint primary key auto_increment not null,
 tipoEmpleado varchar (20) not null ,
 sueldo float not null,
-codUsuario int not null default(0),
-foreign key (codUsuario) references usuario(codUsuario)
+ci int not null default(0),
+foreign key (ci) references usuario(ci)
 );
 insert into empleado values
-(1,'enfermero',2300,1),
-(2,'doctor',4000,2);
+(1,'enfermero',2300,6836877),
+(2,'doctor',4000,6810202);
 create table login (
 usuario varchar(20) not null primary key,
-contraseña varchar(70) not null,
-codUsuario int not null,
+contraseña varchar(60) not null,
+ci int not null default 0,
 usuResponsable varchar(20) not null, /*usuario que creo este usuario*/
 fechaCreacion timestamp default current_timestamp,
-foreign key (codUsuario) references usuario(codUsuario)
+foreign key (ci) references usuario(ci)
 );
-insert into login (usuario,contraseña,codUsuario,usuResponsable) values
-('xlea','123',2,'xlea'),
-('uveja','123',1,'xlea');
+insert into login (usuario,contraseña,ci,usuResponsable) values
+('uveja','123',6836877,'xlea'),
+('xlea','123',6810202,'xlea');
 create table paciente (
   codPaciente int auto_increment primary key not null,
   nombreMascota varchar(20) not null default(''),
   especie set ('perro','gato','otro') not null,
   raza VARCHAR(30) not null default(''),
-  color varchar(15) not null,
+  color varchar(45) not null,
   tamaño set ('pequeño','mediano','grande') not null,
   peso float not null default(0),
   sexo  char(1) NOT NULL
@@ -60,7 +58,7 @@ create table paciente (
  ('Emma','perro','Chow-Chow','cafe','grande',5.5,'H'),
  ('Mica','gato','Angora','naranja','mediano',1.0,'H');
 create table servicio (
-  codServicio smallint primary key not null,
+  codServicio smallint primary key auto_increment not null,
   tipoServicio varchar(30) not null,
   precio float not null,
   descripcion varchar(100)
@@ -118,8 +116,7 @@ insert into factura (tipoDocumento,numDocumento,nombre,codPago) values
 ('NIT','3340943017','Hurtado',1),
 ('NIT','3254175019','Mendoza',2),
 ('CI','5654898','Aligar',3),
-('NIT','6754125917','Estrada',1),
-('Vacio','0000','vacio',3);
+('NIT','6754125917','Estrada',1);
 
 create table detalleFactura(
 codDetalleFactura int auto_increment primary key,
@@ -159,3 +156,12 @@ select * from historial;
 select * from cita;
 select * from factura;
 select * from detalleFactura;
+select factura.codFactura, detallefactura.codDetalleFactura,detallefactura.codPaciente,factura.numDocumento,
+ factura.nombre, servicio.codServicio, servicio.tipoServicio, detalleFactura.costoUnitario,
+ date_format(factura.fecha,'%Y-%m-%d %H:%i:%s')AS fecha from servicio, factura, detalleFactura where
+ factura.codFactura=detalleFactura.codFactura and servicio.codServicio=detalleFactura.codServicio order by(factura.codFactura) desc;
+
+
+select factura.codFactura,factura.tipoDocumento,factura.numDocumento, factura.nombre, servicio.codServicio, servicio.tipoServicio, detalleFactura.costoUnitario, date_format(factura.fecha,'%Y-%m-%d %H:%i:%s')AS fecha
+from servicio, factura, detalleFactura
+where factura.codFactura=detalleFactura.codFactura and servicio.codServicio=detalleFactura.codServicio 

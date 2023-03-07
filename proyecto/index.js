@@ -1,3 +1,4 @@
+const test = require("./middlewires/autenticacion")
 const express = require('express');
 const cors = require('cors');
 const app = express();
@@ -18,20 +19,22 @@ const tipopago =require('./rutas/pago')
 const acceso = require('./rutas/acceso')
 const reporte = require('./rutas/reporte')
 const add = require('./rutas/addFac')
+const logusu = require('./rutas/usulog')
 
 app.use('/login',login);
-app.use('/historial',historial);
-app.use('/factura',factura); 
-app.use('/det',factura_det);
-app.use('/cita',cita);
+app.use('/historial',test,historial);
+app.use('/factura',test,factura); 
+app.use('/det',test,factura_det);
+app.use('/cita',test,cita);
 app.use('/usuario',usuario);
-app.use('/paciente',paciente);
-app.use('/empleado',empleado);
-app.use('/servicio',servicio);
+app.use('/paciente',test,paciente);
+app.use('/empleado',test,empleado);
+app.use('/servicio',test,servicio);
 app.use('/pago',tipopago);
 app.use('/acc',acceso);
 app.use('/repor',reporte);
 app.use('/add',add);
+app.use('/logusu',logusu);
 
 const puerto = 3000
 app.listen(puerto, function() {

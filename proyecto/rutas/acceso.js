@@ -6,7 +6,6 @@ const {conexion}=require('../configuracion/database')
 const jwt= require('jsonwebtoken')
 const {jwt_secret}= require('../configuracion/parametro');
 
-
 route.post('/',function(req,res) {
     const usuario = req.body.usuario;
    let sql = 'select usuario,contraseña from login where usuario = ?';
@@ -28,7 +27,7 @@ route.post('/',function(req,res) {
               if(err){
                   console.log("error, vuelva intentarlo mas tarde");
               }else{
-                  res.json(token);
+                  res.json({token:token});
               }
            });
               //----

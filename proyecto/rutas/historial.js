@@ -37,10 +37,6 @@ route.post('/',function(req,res) {
     }
   let sql = 'Insert into historial set ?';
 
-let tok=req.header('Authorization')
-  jwt.verify(tok, jwt_secret, function (err,datos)
- {
-if(datos){ 
  conexion.query(sql,data, function(err,resul){
      if(err){
 console.log(err.message);
@@ -50,11 +46,6 @@ console.log(err.message);
         res.json({ mensaje:'Se adiciono un campo' });      
                     }
                 });
-               
-            }else{
-                res.json(err);    
-            }
-            }) 
         });
 route.put('/:codHistorial',function(req,res) {
     let codHistorial = req.params.codHistorial;
@@ -64,12 +55,6 @@ route.put('/:codHistorial',function(req,res) {
     let codPaciente= req.body.codPaciente;
     let sql = 'Update historial set descripcion = ?, codServicio=?, codEmpleado = ?, codPaciente = ? where codHistorial = ?';
 
-  
-    
-let tok=req.header('Authorization')
-jwt.verify(tok, jwt_secret, function (err,datos)
-{
-if(datos){ 
     conexion.query(sql,[descripcion,codServicio,codEmpleado,codPaciente,codHistorial],function(err,resul){
         if(err){
             console.log(err.message);
@@ -78,18 +63,10 @@ if(datos){
             res.json({ mensaje:'Se actualizo un campo' });
         }
     });
-          }else{
-              res.json(err);    
-          }
-          }) 
  });
  route.delete('/:codHistorial',function(req,res) {
     let codigo = req.params.codHistorial;
     let sql = 'Delete from historial where codHistorial = ?';
-    let tok=req.header('Authorization')
-jwt.verify(tok, jwt_secret, function (err,datos)
-{
-if(datos){ 
     conexion.query(sql,[codigo],function(err,resul){
         if(err){
             console.log(err.message);
@@ -98,10 +75,7 @@ if(datos){
             res.json({ mensaje:'Se elimino un campo' });
         }
 });
-          }else{
-              res.json(err);    
-          }
-          }) 
+
  });
 
  module.exports=route

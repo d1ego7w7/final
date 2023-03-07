@@ -8,7 +8,7 @@ const {jwt_secret}= require('../configuracion/parametro');
 
 route.get('/',(req, res) => {
     
-    let sql = "Select usuario,contraseña,codUsuario,usuResponsable,date_format(fechaCreacion,'%Y/%m/%d %H:%i:%s')AS fechaCreacion from login;"
+    let sql = "Select usuario,contraseña,ci,usuResponsable,date_format(fechaCreacion,'%Y/%m/%d %H:%i:%s')AS fechaCreacion from login;"
     conexion.query(sql, (err, resul) => {
         if(err) {
             console.log("Error");
@@ -19,7 +19,7 @@ route.get('/',(req, res) => {
     });
 });
 route.get('/:usuario',(req, res) => {   
-    let sql = "Select usuario,contraseña,codUsuario,usuResponsable,date_format(fechaCreacion,'%Y/%m/%d %H:%i:%s')AS fechaCreacion from login where usuario=?;"
+    let sql = "Select usuario,contraseña,ci,usuResponsable,date_format(fechaCreacion,'%Y/%m/%d %H:%i:%s')AS fechaCreacion from login where usuario=?;"
     conexion.query(sql,[req.params.usuario],function(err,resul){
         if(err){
             console.log("Error");
@@ -35,7 +35,7 @@ route.post('/',async function(req,res) {
     let data = {
         usuario:req.body.usuario,
         contraseña:clave_encryptada,
-        codUsuario:req.body.codUsuario,
+        ci:req.body.ci,
         usuResponsable:req.body.usuResponsable
       }
     let sql = 'Insert into login set ?';
@@ -83,15 +83,11 @@ route.put('/:usuario', async function(req,res) {
     let clave_encryptada  = await encrypt.hash(req.body.contraseña,10)
     let usuario = req.params.usuario;
     let contraseña = clave_encryptada;
-    let codUsuario = req.body.codUsuario;
+    let ci = req.body.ci;
     let usuResponsable = req.body.usuResponsable;
-    let sql = 'Update login set contraseña = ?, codUsuario=?, usuResponsable=? where usuario = ?';
+    let sql = 'Update login set contraseña = ?, ci=?, usuResponsable=? where usuario = ?';
    
-    let tok=req.header('Authorization')
-    jwt.verify(tok, jwt_secret, function (err,datos)
-    {
-    if(datos){
-        conexion.query(sql,[contraseña,codUsuario,usuResponsable,usuario],function(err,resul){
+        conexion.query(sql,[contraseña,ci,usuResponsable,usuario],function(err,resul){
             if(err){
                 console.log(err.message);
                 res.json({ mensaje:'No se pudo actualizar un campo' });
@@ -99,19 +95,11 @@ route.put('/:usuario', async function(req,res) {
                 res.json({ mensaje:'Se actualizo un campo' });
             }
         });
-
-    }else{
-        res.json(err);    
-    }
-    }) 
  });
  route.delete('/:usuario',function(req,res) {
     let usuario = req.params.usuario;
     let sql = 'Delete from login where usuario = ?';
     let tok=req.header('Authorization')
-    jwt.verify(tok, jwt_secret, function (err,datos)
-    {
-    if(datos){
         conexion.query(sql,[usuario],function(err,resul){
             if(err){
                 console.log(err.message);
@@ -120,10 +108,6 @@ route.put('/:usuario', async function(req,res) {
                 res.json({ mensaje:'Se elimino un campo' });
             }
         });
-    }else{
-        res.json(err);    
-    }
-    }) 
  });
 
 module.exports =  route 

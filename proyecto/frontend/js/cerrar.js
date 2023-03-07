@@ -5,3 +5,4 @@ function eliminar(){
         window.location = "login.html";
     }
 }
+

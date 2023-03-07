@@ -36,10 +36,7 @@ route.post('/',function(req,res) {
     }
     
     let sql = 'Insert into servicio set ?';
-    let tok=req.header('Authorization')
-    jwt.verify(tok, jwt_secret, function (err,datos)
-    {
-    if(datos){
+
         conexion.query(sql,data, function(err,resul){
             if(err){
                 console.log(err.message);
@@ -48,13 +45,8 @@ route.post('/',function(req,res) {
                 res.json({ mensaje:'Se agrego un campo' });
             }
         });
-      
-    }else{
-        res.json(err);    
-    }
-    }) 
 });
-route.put('/:codUsuario ',function(req,res) {
+route.put('/:codServicio',function(req,res) {
     let  codigo   = req.params.codServicio  ;    
     let tipoServicio  =req.body.tipoServicio  ;
     let precio   =req.body.precio  ;
@@ -62,10 +54,6 @@ route.put('/:codUsuario ',function(req,res) {
  
 
     let sql = 'Update servicio set tipoServicio = ?, precio = ?, descripcion = ? where codServicio  = ?';
-    let tok=req.header('Authorization')
-    jwt.verify(tok, jwt_secret, function (err,datos)
-    {
-    if(datos){
         conexion.query(sql,[tipoServicio,precio,descripcion,codigo],function(err,resul){
             if(err){
                 console.log(err.message);
@@ -74,19 +62,10 @@ route.put('/:codUsuario ',function(req,res) {
                 res.json({ mensaje:'Se actualizo un campo' });
             }
         }); 
-      
-    }else{
-        res.json(err);    
-    }
-    }) 
  });
- route.delete('/:codServicio  ',function(req,res) {
+ route.delete('/:codServicio',function(req,res) {
     let codigo = req.params.codServicio  ;
-    let sql = 'Delete from servicio where codServicio   = ?';
-    let tok=req.header('Authorization')
-    jwt.verify(tok, jwt_secret, function (err,datos)
-    {
-    if(datos){
+    let sql = 'Delete from servicio where codServicio = ?';
         conexion.query(sql,[codigo],function(err,resul){
             if(err){
                 console.log(err.message);
@@ -95,11 +74,6 @@ route.put('/:codUsuario ',function(req,res) {
                 res.json({ mensaje:'Se elimino un campo' });
             }
         });
-       
-    }else{
-        res.json(err);    
-    }
-    }) 
 });
 
 

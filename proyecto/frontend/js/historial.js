@@ -1,3 +1,4 @@
+const token = localStorage.getItem('token');
 const url='http://localhost:3000/historial';
 const contenedor=document.getElementById('data');
 let resultado='';
@@ -16,6 +17,14 @@ const carga_historial = (historial)=>{
     });
     contenedor.innerHTML=resultado;
 }  
+fetch(url, {
+    method: 'GET',
+    headers: { 'Authorization': token
+   }
+  })
+.then(response => response.json())
+ .then(data => carga_historial(data))
+.catch(error => console.log(error))
 const on=(element,event,selector,handler)=>{
     element.addEventListener(event, e =>{
     if(e.target.closest(selector)){
@@ -27,7 +36,8 @@ const on=(element,event,selector,handler)=>{
 on (document,'click','.btnDelete', e=>{
      fila=e.target.parentNode.parentNode 
     const codigo=fila.firstElementChild.innerHTML
-    fetch(url +'/'+codigo,{method:'DELETE'})
+    fetch(url +'/'+codigo,{method:'DELETE',headers: { 'Authorization': token
+}})
     .then(response=>response.json())
     .then(()=>location.reload())
 })
@@ -37,7 +47,7 @@ form_historial.addEventListener('submit',(e)=>{
     e.preventDefault()
     if(operacion=='adicionar'){
         fetch(url,{ method:'POST',
-        headers:{'Content-type':'application/json'},
+        headers:{'Content-type':'application/json','Authorization': token},
         body:JSON.stringify({
             
             descripcion:descripcion.value,
@@ -56,7 +66,7 @@ form_historial.addEventListener('submit',(e)=>{
 }
     if(operacion=='modificar'){
         fetch(url+'/'+codHistorial,{method:'PUT',
-        headers:{'Content-type':'application/json'},
+        headers:{'Content-type':'application/json','Authorization': token},
         body:JSON.stringify({
             descripcion:descripcion.value,
             codServicio:codServicio.value,
@@ -87,7 +97,4 @@ on(document,'click','.btnEditar',e=>{
     operacion='modificar'
     chil
 })
-fetch(url)
-.then(response => response.json())
- .then(data => carga_historial(data))
-.catch(error => console.log(error))
+

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="stylesheet" href="../css/es_abajo.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"> 
+    <link rel="shortcut icon" href="../imagenes/logo (1).png">
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <style>
+      table{
+            border-collapse: collapse;
+            font-size: 15px;
+            }
+            .tabla2{
+              background-color:rgb(18, 90, 4);
+          color: white;
+          font-size: 20px;
+      }
+      .tabla2 input{
+         border: 5px solid rgb(143, 207, 127);
+
+      }
+           .caja{   
+   color:white;
+   background-color: #ffffff;
+           }
+           button{
+      background-color: rgb(143, 207, 127) ;
+      color:black;
+      margin-top: 10px ;
+      font-size: 15px;
+      padding:10px;
+  }
+     </style>
+</head>
+<body style="background-color:rgb(69, 122, 69)">
+    <div class="container text-center" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: bisque;">
+        <div class="row">
+          <div class="col">
+            
+          </div>
+          <div class="col-6">
+           <img src="../imagenes/logo (1).png" height="100px">
+          </div>
+          <div class="col">
+            
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+          
+          </div>
+        </section>
+        <br>
+
+        <section style="color: rgb(255, 255, 255);">
+          <br>
+          <h3>Llena tus datos personales</h3>
+
+          <div align="center">
+          <form id='form_usuario' >
+              <table class="tabla2">
+                      <td>CI</td>
+                      <td><input type="text" id="ci" name="ci"></td></tr>
+                      <tr>
+                      <td>Nombres</td>
+                      <td><input type="text" id="nombres" name="nombres"></tr></td>
+                      <tr ><td>Paterno</td>
+                      <td><input type="text" id="paterno" name="paterno"></td></tr>
+                      <tr >
+                      <td>Materno</td>
+                      <td><input type="text" id="materno" name="materno"></td></tr>
+                      <tr>
+                      <td>Direccion</td>
+                      <td><input type="text" id="direccion" name="direccion"></td></tr>
+                      <tr>
+                       <td>Genero</td>
+                      <td><input type="text" id="genero" name="genero"></td> </tr>
+                       <tr>
+                       <td>Celular</td>
+                       <td><input type="text" id="celular" name="celular"></td></tr>
+                       <tr>
+                      <td>Fecha Nacimiento</td>
+                      <td><input type="date" id="fechaNacimiento" name="fechaNacimiento"></td></tr>
+                      <tr>
+                      <td>Emial</td>
+                       <td><input type="email" id="email" name="email"></td></tr>
+          
+      </table>
+      
+      <button  type="submit">Guardar</button>
+          </form>
+      
+      </div>
+         
+        </section>
+
+        <br>
+        <section style="color: rgb(255, 255, 255);">
+
+             
+          </table>
+          <br>
+          <div align="center">
+            <br>
+            <h3>Login</h3>
+          <form id='form_login' >
+              <table class="tabla2">
+                      <tr ><td>Usuario</td>
+                      <td><input type="text" id="usuario" name="usuario"></tr></td>
+                      <tr ><td>Contraseña</td>
+                      <td><input type="password" id="contraseña" name="contraseña"></tr></td>
+                      <tr ><td>CI</td>
+                      <td><input type="number" id="cie" name="cie"></td></tr>
+                      <!-- <tr ><td>Usuario resposable</td>
+                      <td><input type="text" id="usuResponsable" name="usuResponsable"></td></tr> -->
+      </table>
+      
+      <button  type="submit">Guardar</button>
+      
+      </div>
+         
+          
+        </section>
+        
+      
+<script src="../js/registro.js"></script>
+ <script src="../js/registrologin.js">
+          </script> 
+            
+            <h4>¿Quieres volver?</h4>
+            <br>
+            <a href="../html/login.html" class="btn btn-light">Ingresa aqui</a>
+            
+          </div>
+
+          <div class="col">
+         
+          </div>
+        </div>
+      </div>
+
+    
+
+
+<!-- Pie de pagina -->
+<br>
+<footer class ="pie-pagina">
+    <div class="group-1">
+      <div class="box">
+      </div>
+      <div class="box">
+          <h2>Siguenos</h2>
+          <div class="red-social">
+            <ul>
+              <li>
+                <a href="" target="_blank"><i class="fab fa-facebook-f icon"></i>    </a>
+              </li>
+              <li>
+                <a href=""  target="_blank"><i class="fab fa-twitter icon"></i></a>
+              </li>
+              <li>
+                <a href="" target="_blank"><i class="fab fa-whatsapp icon"></i></a></li>
+              <li>
+                <a href="" target="_blank"><i class="fab fa-instagram icon"></i></a></li>
+            </ul>
+          </div>
+      </div>
+      <div class="box">
+      </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
+</html>

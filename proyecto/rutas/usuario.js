@@ -5,7 +5,7 @@ const jwt= require('jsonwebtoken')
 const {jwt_secret}= require('../configuracion/parametro');
 
 route.get('/',(req,res) => {
-    let sql = "select codUsuario,nombres,paterno,materno,ci,direccion,genero,celular,date_format(fechaNacimiento,'%Y/%m/%d')AS fechaNacimiento,email from usuario;"
+    let sql = "select ci,nombres,paterno,materno,direccion,genero,celular,date_format(fechaNacimiento,'%Y-%m-%d')AS fechaNacimiento,email from usuario;"
     conexion.query(sql, (err, resul) => {
         if(err) {
             console.log("Error");
@@ -17,9 +17,9 @@ route.get('/',(req,res) => {
 })
 
 
-route.get('/:codUsuario',function(req,res) {
-    let sql = "select codUsuario,nombres,paterno,materno,ci,direccion,genero,celular,date_format(fechaNacimiento,'%Y/%m/%d')AS fechaNacimiento,email from usuario where codUsuario=?;"
-    conexion.query(sql,[req.params.codUsuario],function(err,resul){
+route.get('/:ci',function(req,res) {
+    let sql = "select ci,nombres,paterno,materno,direccion,genero,celular,date_format(fechaNacimiento,'%Y-%m-%d')AS fechaNacimiento,email from usuario where codUsuario=?;"
+    conexion.query(sql,[req.params.ci],function(err,resul){
         if(err){
             throw response.json(err.message)
         }else{
@@ -30,10 +30,10 @@ route.get('/:codUsuario',function(req,res) {
 
 route.post('/',function(req,res) {
     let data = {
+        ci  :req.body.ci,
         nombres:req.body.nombres,
         paterno :req.body.paterno,
         materno :req.body.materno,
-        ci  :req.body.ci,
         direccion  :req.body.direccion,
         genero  :req.body.genero,
         celular  :req.body.celular,
@@ -43,10 +43,6 @@ route.post('/',function(req,res) {
     }
     
     let sql = 'Insert into usuario set ?';
-    let tok=req.header('Authorization')
-    jwt.verify(tok, jwt_secret, function (err,datos)
-    {
-    if(datos){
         conexion.query(sql,data, function(err,resul){
             if(err){
                 console.log(err.message);
@@ -55,18 +51,12 @@ route.post('/',function(req,res) {
                 res.json({ mensaje:'Se agrego un campo' });
             }
         });
-      
-    }else{
-        res.json(err);    
-    }
-    }) 
 });
-route.put('/:codUsuario ',function(req,res) {
-    let codigo  = req.params.codUsuario ;    
+route.put('/:ci',function(req,res) {
+    let codigo=req.params.ci;   
     let nombres =req.body.nombres ;
     let paterno =req.body.paterno ;
     let materno =req.body.materno ;
-    let ci =req.body.ci;
     let direccion  =req.body.direccion  ;
     let genero  =req.body.genero  ;
     let celular  =req.body.celular  ;
@@ -74,12 +64,8 @@ route.put('/:codUsuario ',function(req,res) {
     let email   =req.body.email   
  
 
-    let sql = 'Update cita set nombres = ?, paterno = ?, materno = ?, ci = ?, direccion = ?, genero = ?, celular = ?, fechaNacimiento = ?, email = ? where codUsuario = ?';
-    let tok=req.header('Authorization')
-    jwt.verify(tok, jwt_secret, function (err,datos)
-    {
-    if(datos){
-        conexion.query(sql,[nombres ,paterno ,materno ,ci ,direccion,genero ,celular ,fechaNacimiento ,email,codigo],function(err,resul){
+    let sql = 'Update usuario set nombres = ?, paterno = ?, materno = ?, direccion = ?, genero = ?, celular = ?, fechaNacimiento = ?, email = ? where ci = ?';
+        conexion.query(sql,[nombres ,paterno ,materno ,direccion,genero ,celular ,fechaNacimiento ,email,codigo],function(err,resul){
             if(err){
                 console.log(err.message);
                 res.json({ mensaje:'No se pudo actualizar un campo' });
@@ -87,19 +73,10 @@ route.put('/:codUsuario ',function(req,res) {
                 res.json({ mensaje:'Se actualizo un campo' });
             }
         }); 
-      
-    }else{
-        res.json(err);    
-    }
-    }) 
  });
- route.delete('/:codUsuario ',function(req,res) {
-    let codigo = req.params.codUsuario ;
-    let sql = 'Delete from usuario where codUsuario  = ?';
-    let tok=req.header('Authorization')
-    jwt.verify(tok, jwt_secret, function (err,datos)
-    {
-    if(datos){
+ route.delete('/:ci',function(req,res) {
+    let codigo = req.params.ci ;
+    let sql = 'Delete from usuario where ci  = ?';
         conexion.query(sql,[codigo],function(err,resul){
             if(err){
                 console.log(err.message);
@@ -108,11 +85,6 @@ route.put('/:codUsuario ',function(req,res) {
                 res.json({ mensaje:'Se elimino un campo' });
             }
         });
-       
-    }else{
-        res.json(err);    
-    }
-    }) 
 });
 
 

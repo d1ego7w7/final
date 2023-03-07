@@ -5,7 +5,7 @@ const jwt= require('jsonwebtoken')
 const {jwt_secret}= require('../configuracion/parametro');
 
 route.get('/',(req,res) => {
-    let sql = "select codCita,codPaciente,date_format(fecha,'%Y/%m/%d %H:%i:%s')AS fecha,descripcion,date_format(fechaProxima,'%Y/%m/%d')AS fechaProxima,hora from cita;"
+    let sql = "select codCita,codPaciente,date_format(fecha,'%Y/%m/%d %H:%i:%s')AS fecha,descripcion,date_format(fechaProxima,'%Y-%m-%d')AS fechaProxima,hora from cita;"
     conexion.query(sql, (err, resul) => {
         if(err) {
             console.log("Error");
@@ -18,7 +18,7 @@ route.get('/',(req,res) => {
 
 
 route.get('/:codCita',function(req,res) {
-    let sql = "select codCita,codPaciente,date_format(fecha,'%Y/%m/%d %H:%i:%s')AS fecha,descripcion,date_format(fechaProxima,'%Y/%m/%d')AS fechaProxima,hora from cita where codCita=?;"
+    let sql = "select codCita,codPaciente,date_format(fecha,'%Y/%m/%d %H:%i:%s')AS fecha,descripcion,date_format(fechaProxima,'%Y-%m-%d')AS fechaProxima,hora from cita where codCita=?;"
     conexion.query(sql,[req.params.codCita],function(err,resul){
         if(err){
             throw response.json(err.message)
@@ -38,10 +38,6 @@ route.post('/',function(req,res) {
     }
     
     let sql = 'Insert into cita set ?';
-    let tok=req.header('Authorization')
-    jwt.verify(tok, jwt_secret, function (err,datos)
-    {
-    if(datos){
         conexion.query(sql,data, function(err,resul){
             if(err){
                 console.log(err.message);
@@ -50,11 +46,6 @@ route.post('/',function(req,res) {
                 res.json({ mensaje:'Se agrego un campo' });
             }
         });
-      
-    }else{
-        res.json(err);    
-    }
-    }) 
 });
 route.put('/:codCita',function(req,res) {
     let codigo = req.params.codCita;    
@@ -64,10 +55,6 @@ route.put('/:codCita',function(req,res) {
     let  hora=req.body.hora
 
     let sql = 'Update cita set codPaciente = ?, descripcion=?, fechaProxima=?, hora=? where codCita = ?';
-    let tok=req.header('Authorization')
-    jwt.verify(tok, jwt_secret, function (err,datos)
-    {
-    if(datos){
         conexion.query(sql,[codPaciente,descripcion,fechaProxima,hora,codigo],function(err,resul){
             if(err){
                 console.log(err.message);
@@ -76,19 +63,10 @@ route.put('/:codCita',function(req,res) {
                 res.json({ mensaje:'Se actualizo un campo' });
             }
         }); 
-      
-    }else{
-        res.json(err);    
-    }
-    }) 
  });
  route.delete('/:codCita',function(req,res) {
     let codigo = req.params.codCita;
     let sql = 'Delete from cita where codCita = ?';
-    let tok=req.header('Authorization')
-    jwt.verify(tok, jwt_secret, function (err,datos)
-    {
-    if(datos){
         conexion.query(sql,[codigo],function(err,resul){
             if(err){
                 console.log(err.message);
@@ -97,11 +75,6 @@ route.put('/:codCita',function(req,res) {
                 res.json({ mensaje:'Se elimino un campo' });
             }
         });
-       
-    }else{
-        res.json(err);    
-    }
-    }) 
 });
 
 
