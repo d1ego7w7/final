@@ -42,7 +42,7 @@ form_usuario.addEventListener('submit',(e)=>{
         fetch(url,{ method:'POST',
         headers:{'Content-type':'application/json'},
         body:JSON.stringify({
-            ci:ci.value,
+            ci:ci1.value,
             nombres:nombres.value,
             paterno:paterno.value,
             materno:materno.value,
@@ -53,19 +53,21 @@ form_usuario.addEventListener('submit',(e)=>{
             email:email.value
  })
 })
-        .then(response => response.json())
+        .then(response => {
+            response.json()
+
+        })
         .then (data => {
             const nuevo_producto=[]
-            nuevo_producto.push(data)
-
+            nuevo_producto.push(data)         
         })
         .then(()=>location.reload())
 }
     if(operacion=='modificar'){
-        fetch(url+'/'+codUsuario1,{method:'PUT',
+        fetch(url+'/'+ci,{method:'PUT',
         headers:{'Content-type':'application/json'},
         body:JSON.stringify({
-            ci:ci.value,
+            ci:ci1.value,
             nombres:nombres.value,
             paterno:paterno.value,
             materno:materno.value,
@@ -84,10 +86,10 @@ form_usuario.addEventListener('submit',(e)=>{
         .then(()=>location.reload())
     }
 })
-let codUsuario1=0;
+let ci=0;
 a(document,'click','.btnEditar',e=>{
     const fila=e.target.parentNode.parentNode
-    const fci=fila.children[0].innerHTML
+    const fci1=fila.children[0].innerHTML
     const fnom=fila.children[1].innerHTML
     const fpat=fila.children[2].innerHTML
     const fmat=fila.children[3].innerHTML
@@ -96,8 +98,8 @@ a(document,'click','.btnEditar',e=>{
     const fcel=fila.children[6].innerHTML
     const ffecha=fila.children[7].innerHTML
     const femail=fila.children[8].innerHTML
-    
-    ci.value=fci,
+
+    ci1.value=fci1,
     nombres.value=fnom,
     paterno.value=fpat,
     materno.value=fmat,

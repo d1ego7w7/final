@@ -58,7 +58,8 @@ form_usuario.addEventListener('submit',(e)=>{
         .then (data => {
             const nuevo_producto=[]
             nuevo_producto.push(data)
-
+            // console.log("jajajaja")
+            // console.log(nuevo_producto)
         })
         .then(()=>location.reload())
 }

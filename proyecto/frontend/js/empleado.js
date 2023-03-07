@@ -24,7 +24,7 @@ fetch(url2, {
  .then(data1 => carga_empleado(data1))
 .catch(error => console.log(error))
 
-const a=(element,event,selector,handler)=>{
+const on=(element,event,selector,handler)=>{
     element.addEventListener(event, e =>{
     if(e.target.closest(selector)){
         handler(e)
@@ -32,7 +32,7 @@ const a=(element,event,selector,handler)=>{
 })
 }
 //------DELETE
-a (document,'click','.btnDelete1', e=>{
+on (document,'click','.btnDelete1', e=>{
      fila=e.target.parentNode.parentNode 
     const codigo=fila.firstElementChild.innerHTML
     fetch(url2 +'/'+codigo,{method:'DELETE', headers: { 'Authorization': token
@@ -81,7 +81,7 @@ form_empleado.addEventListener('submit',(e)=>{
     }
 })
 let codEmpleado=0;
-a(document,'click','.btnEditar1',e=>{
+on(document,'click','.btnEditar1',e=>{
     const fila=e.target.parentNode.parentNode
     codEmpleado=fila.children[0].innerHTML
     const ftipoEmpleado=fila.children[1].innerHTML
