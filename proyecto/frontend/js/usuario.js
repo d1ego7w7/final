@@ -1,11 +1,10 @@
-
 const url='http://localhost:3000/usuario';
 const contenedor=document.getElementById('data');
 let resultado='';
 const carga_usuario = (usuario)=>{
     usuario.forEach(usuario => {
         resultado+=`<tr style="border-bottom: 1px solid  #6c567b">
-                        <td>${usuario.ci}</td>
+                         <td>${usuario.ci}</td>
                           <td>${usuario.nombres}</td>
                           <td>${usuario.paterno}</td>
                           <td>${usuario.materno}</td>
@@ -20,16 +19,15 @@ const carga_usuario = (usuario)=>{
     });
     contenedor.innerHTML=resultado;
 }  
-const on=(element,event,selector,handler)=>{
+const a=(element,event,selector,handler)=>{
     element.addEventListener(event, e =>{
     if(e.target.closest(selector)){
         handler(e)
     }
 })
 }
-
 //------DELETE
-on (document,'click','.btnDelete', e=>{
+a (document,'click','.btnDelete', e=>{
      fila=e.target.parentNode.parentNode 
     const codigo=fila.firstElementChild.innerHTML
     fetch(url +'/'+codigo,{method:'DELETE'})
@@ -44,7 +42,6 @@ form_usuario.addEventListener('submit',(e)=>{
         fetch(url,{ method:'POST',
         headers:{'Content-type':'application/json'},
         body:JSON.stringify({
-            
             ci:ci.value,
             nombres:nombres.value,
             paterno:paterno.value,
@@ -65,7 +62,7 @@ form_usuario.addEventListener('submit',(e)=>{
         .then(()=>location.reload())
 }
     if(operacion=='modificar'){
-        fetch(url+'/'+ci,{method:'PUT',
+        fetch(url+'/'+codUsuario1,{method:'PUT',
         headers:{'Content-type':'application/json'},
         body:JSON.stringify({
             ci:ci.value,
@@ -87,22 +84,24 @@ form_usuario.addEventListener('submit',(e)=>{
         .then(()=>location.reload())
     }
 })
-let ci=0;
-on(document,'click','.btnEditar',e=>{
+let codUsuario1=0;
+a(document,'click','.btnEditar',e=>{
     const fila=e.target.parentNode.parentNode
-    ci=fila.children[0].innerHTML
-
+    codUsuario1=fila.children[0].innerHTML
     const fnom=fila.children[1].innerHTML
     const fpat=fila.children[2].innerHTML
     const fmat=fila.children[3].innerHTML
-    const fdir=fila.children[4].innerHTML
-    const fgen=fila.children[5].innerHTML
-    const fcel=fila.children[6].innerHTML
-    const ffecha=fila.children[7].innerHTML
-    const femail=fila.children[8].innerHTML
+    const fci=fila.children[4].innerHTML
+    const fdir=fila.children[5].innerHTML
+    const fgen=fila.children[6].innerHTML
+    const fcel=fila.children[7].innerHTML
+    const ffecha=fila.children[8].innerHTML
+    const femail=fila.children[9].innerHTML
+
     nombres.value=fnom,
     paterno.value=fpat,
     materno.value=fmat,
+    ci.value=fci,
     direccion.value=fdir,
     genero.value=fgen,
     celular.value=fcel,
